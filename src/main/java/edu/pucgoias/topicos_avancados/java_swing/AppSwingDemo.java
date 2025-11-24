@@ -72,7 +72,14 @@ public class AppSwingDemo extends JFrame {
         DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
         JTable tabela = new JTable(modelo);
         JScrollPane scrollTabela = new JScrollPane(tabela);
-        painelPrincipal.add(scrollTabela, BorderLayout.SOUTH);
+
+        // ====== PAINEL INTERMEDIÁRIO ======
+        JPanel painelConteudo = new JPanel();
+        painelConteudo.setLayout(new BoxLayout(painelConteudo, BoxLayout.Y_AXIS));
+        painelConteudo.add(painelCentral);
+        painelConteudo.add(scrollTabela);
+
+        painelPrincipal.add(painelConteudo, BorderLayout.CENTER);
 
         // ====== PAINEL DE BOTÕES ======
         JPanel painelBotoes = new JPanel();

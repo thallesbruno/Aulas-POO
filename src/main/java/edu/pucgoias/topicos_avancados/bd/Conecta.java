@@ -36,5 +36,35 @@ public class Conecta {
         }
     }*/
 
+    // Driver JDBC do SQLite
+    private static final String DRIVER = "org.sqlite.JDBC";
 
+    // Caminho do arquivo do banco SQLite
+    // Caso o arquivo não exista, o SQLite cria automaticamente
+    private static final String URL = "jdbc:sqlite:meu_banco.db";
+
+    public static void main(String[] args) {
+        try {
+            // Carrega o driver
+            Class.forName(DRIVER);
+
+            // Conecta ao arquivo do banco
+            Connection conexao = DriverManager.getConnection(URL);
+
+            JOptionPane.showMessageDialog(null,
+                    "Conectado com sucesso ao banco SQLite!");
+
+            conexao.close();
+
+        } catch (ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Erro! Driver JDBC não encontrado:\n" + e.getMessage(),
+                    "Erro de Driver", JOptionPane.ERROR_MESSAGE);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Erro ao conectar ao banco SQLite:\n" + e.getMessage(),
+                    "Erro de SQL", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
